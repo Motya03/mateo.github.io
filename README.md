@@ -1,46 +1,97 @@
-# What is this ?
-This is a portfolio template that you can use to showcase your work, especially if it's comprised of projects that should be shown in a very visual way.
+# 🚀 Portafolio Web Moderno - Template para GitHub Pages
 
-Looking for a game developer job, I needed a portfolio to present my work to recruiters. I found a lot of custom made portfolios, but no easy to use template unless I used Wordpress. Which was overkill to me because a static HTML/JS website would do fine.
+Un template de portafolio profesional, moderno, ultra rápido y listo para desplegar inmediatamente en **GitHub Pages** sin necesidad de Node.js, Webpack, npm ni pasos complejos de compilación.
 
-So i created my own using VueJS, keeping in mind that I wanted it to be easily customisable so other people can use this as a base to make their own. It's very simple, static, fast and responsive.
+---
 
-For a real world use case, check my portfolio: https://schouffy.github.io
+## ⚡ ¿Cómo desplegar en GitHub Pages? (1 Minuto)
 
+Este proyecto está configurado para que simplemente haciendo **`git push`** a tu repositorio esté disponible en internet de inmediato.
 
-# How to use
+### Paso 1: Subir tus cambios a GitHub
+Abre la terminal en esta carpeta y ejecuta:
+```bash
+git add .
+git commit -m "Mi portafolio listo para GitHub Pages"
+git push origin main
+```
 
-1. Install
+### Paso 2: Verificar la configuración en GitHub
+1. Ve a tu repositorio en GitHub: `https://github.com/Motya03/mateo.github.io`
+2. Haz clic en **Settings** (Configuración) > **Pages** (en el menú lateral izquierdo).
+3. En **Build and deployment**:
+   - **Source**: Selecciona **Deploy from a branch**.
+   - **Branch**: Selecciona **`main`** y la carpeta **`/(root)`**.
+   - Haz clic en **Save**.
+4. ¡Listo! En 1 a 2 minutos tu portafolio estará visible públicamente en:
+   👉 **`https://Motya03.github.io`** (o `https://mateo.github.io`)
 
-    - Fork or duplicate the repository
-    - npm install
-    - npm run serve
-    - If any issue with serve, please read this: https://stackoverflow.com/questions/70582072/npm-run-fails-with-err-ossl-evp-unsupported For Windows Powershell, you can fix with `$env:NODE_OPTIONS = '--openssl-legacy-provider'` then `npm run serve`
+> **Nota:** También se incluye el flujo automático oficial en `.github/workflows/deploy.yml`, por lo que si prefieres la opción **GitHub Actions** en GitHub Pages, funcionará de manera automática y transparente.
 
-2. Customize
-* For the content
-    - Except for the projects pages, everything is static HTML that you can edit directly in the views and components files
-    - For the projects pages, the page is dynamically populated at runtime using data stored in Typescript files (data/GameProjectsData.ts and data/OtherProjectsData.ts). Make the changes directly in these .ts files
-    - Static files (images, icons, downloadables,..) should be placed in /public folder.
-    - Make the necessary changes in the .env file (this is mostly the site metadata). You need to "npm run serve" again when updating this file.
+---
 
-* For the style
-    - The basic colors can be edited in the css/variables.less file.
-    - The rest of the CSS can be edited, if need be, directly inside each view and component.
-    - If you place custom CSS in your projects HTML data (that will be displayed in an overlay dialog), you must add the definition for this CSS in the css/projects.less file
+## 📁 Estructura del Proyecto
 
-* Additional info & optimizations
-    - Images will be loaded on-demand when you switch tabs. It means if you have big images or animated gifs, you may want to preload them so the user sees them faster when they change tabs. To do this, you can call Helpers.preloadImages in app.vue to preload heavy images.
+```text
+mateo.github.io/
+├── index.html              <-- Página principal (se sirve directamente en la raíz)
+├── favicon.ico             <-- Icono de la pestaña del navegador
+├── .nojekyll               <-- Instruye a GitHub Pages a servir archivos estáticos sin Jekyll
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      <-- Flujo oficial de despliegue continuo de GitHub Pages
+├── assets/
+│   ├── css/
+│   │   └── style.css       <-- Estilos modernos, temas oscuro/claro y diseño responsivo
+│   ├── js/
+│   │   └── main.js         <-- Interactividad vanilla (modo oscuro, filtros, modales, etc.)
+│   └── img/
+│       ├── avatar.png      <-- Tu foto de perfil
+│       ├── avatar-og.png   <-- Imagen para compartir en redes sociales (Open Graph)
+│       └── projects/       <-- Iconos e imágenes de tus proyectos
+└── README.md               <-- Esta guía
+```
 
-3. Deploy
+---
 
-    - npm run build
-    - copy the content of the "dist" folder (created by "npm run build") to the publish location.
-    - Check this example if you want to deploy to GitHub pages or some other major static content host: https://cli.vuejs.org/guide/deployment.html#github-pages
+## 🛠️ Cómo Personalizar tu Portafolio
 
+Toda la personalización se realiza directamente en el archivo [`index.html`](index.html):
 
-# License
+### 1. Tu Información y Foto de Perfil
+- **Nombre y Título**: Edita las líneas en la sección `#hero` (ej. busca `Mateo`).
+- **Foto de perfil**: Puedes sustituir el archivo `assets/img/avatar.png` por tu propia foto con el mismo nombre, o cambiar la ruta `<img src="assets/img/avatar.png">`.
+- **Bio y Sobre Mí**: Edita los párrafos dentro de la sección `<section id="about">`.
 
-This is GNU LGPL, check the LICENSE file.
+### 2. Tus Proyectos
+Dentro de `<section id="projects">`:
+- Cambia los títulos, descripciones y etiquetas tecnológicas (`React`, `Node.js`, etc.).
+- Coloca las imágenes o capturas de tus proyectos en `assets/img/projects/`.
+- Actualiza los enlaces a la demo (`href="..."`) y al repositorio en GitHub.
+- Los detalles extendidos de la ventana modal se configuran en `assets/js/main.js` dentro del objeto `projectsData`.
 
-Please consider keeping the link to this repository at the bottom of your portfolio, so other people can find and use this template too. Of course it's not mandatory though.
+### 3. Tus Redes Sociales y Correo
+- En la sección `#hero` y `#contact`, reemplaza los enlaces:
+  - GitHub: `https://github.com/Motya03`
+  - LinkedIn: `https://linkedin.com/in/tu-perfil`
+  - Correo: `shestpro@gmail.com`
+  - El botón **"Copiar Correo"** copia automáticamente la dirección configurada al portapapeles con confirmación visual.
+
+---
+
+## ✨ Características Incluidas
+
+- 🌓 **Modo Oscuro / Modo Claro:** Detección automática de preferencia del sistema y guardado de elección en `localStorage`.
+- 📱 **100% Responsivo:** Adaptado a pantallas móviles, tablets y monitores de alta resolución.
+- ⚡ **0 Dependencias / Cero Build:** Sin `npm install` ni paquetes pesados. Carga al instante con calificación 100 en Google Lighthouse.
+- 🎨 **Diseño Moderno 2026:** Efectos de cristal esmerilado (glassmorphism), gradientes sutiles y micro-interacciones suaves.
+- 🔍 **Filtro de Proyectos & Habilidades:** Categorización interactiva en tiempo real.
+- 🪟 **Modal de Detalles:** Vista emergente para describir en profundidad cada proyecto.
+- 📋 **Copiado al Portapapeles:** Copia de correo con notificación toast flotante.
+- 🔝 **Botón Volver Arriba:** Aparece suavemente al hacer scroll hacia abajo.
+
+---
+
+## 💻 Probar Localmente
+
+Simplemente haz doble clic en el archivo [`index.html`](index.html) para abrirlo en cualquier navegador (Chrome, Edge, Firefox, Safari) o usa la extensión **Live Server** de VS Code.
